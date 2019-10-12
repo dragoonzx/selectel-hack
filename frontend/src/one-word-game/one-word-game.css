@@ -1,0 +1,184 @@
+.ep-board {
+	display: inline-block;
+	height: 70vh;
+	width: 60vw;
+	background: var(--light-color);
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgb(61, 61, 61);
+	margin-top: 10px;
+}
+
+.dotted {
+	background-image: -webkit-repeating-radial-gradient(
+		center center,
+		rgba(0, 0, 0, 0.2),
+		rgba(0, 0, 0, 0.2) 1px,
+		transparent 1px,
+		transparent 100%
+	);
+	background-image: -moz-repeating-radial-gradient(
+		center center,
+		rgba(0, 0, 0, 0.2),
+		rgba(0, 0, 0, 0.2) 1px,
+		transparent 1px,
+		transparent 100%
+	);
+	background-image: -ms-repeating-radial-gradient(
+		center center,
+		rgba(0, 0, 0, 0.2),
+		rgba(0, 0, 0, 0.2) 1px,
+		transparent 1px,
+		transparent 100%
+	);
+	background-image: repeating-radial-gradient(
+		center center,
+		rgba(0, 0, 0, 0.2),
+		rgba(0, 0, 0, 0.2) 1px,
+		transparent 1px,
+		transparent 100%
+	);
+	-webkit-background-size: 8px 8px;
+	-moz-background-size: 8px 8px;
+	background-size: 8px 8px;
+}
+
+.ep-game {
+	padding: calc(10vh - 35px) 5vw;
+}
+
+.game-header {
+	font-size: 21px;
+	height: fit-content;
+	width: fit-content;
+	color: white;
+}
+
+.game-descr {
+	color: #aaabce;
+	height: fit-content;
+	width: fit-content;
+	font-size: 16px;
+}
+
+.ep-pin {
+	position: absolute;
+	padding: 10px;
+	background: rgb(255, 255, 130);
+	height: max-content;
+	width: min-content;
+	box-shadow: 0 1px 1px rgb(61, 61, 61);
+	border-radius: 5px;
+}
+.ep-create-pin {
+	margin-top: 10px;
+	height: 50vh;
+	width: 20vw;
+	display: inline-block;
+	border-radius: 10px;
+	margin-left: 10vw;
+}
+
+.ep-create-pin__header {
+	text-align: left;
+	font-size: 25px;
+	color: white;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.pin-text-input {
+	width: 80%;
+	padding: 10px;
+	font-size: 14px;
+	margin: 8% 3%;
+	height: 20%;
+	outline: none;
+	resize: none;
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgb(61, 61, 61);
+	background: var(--light-color);
+}
+
+.pin-text-input:active {
+	outline: none;
+}
+
+.ep-create-pin__create-button {
+	text-align: center;
+	height: 15%;
+	width: 80%;
+	margin: 8% 3%;
+	font-size: 20px;
+	border-radius: 10px;
+	border: 1px solid var(--primary-color);
+	background: var(--light-color);
+	outline: none;
+}
+
+.ep-create-pin__create-button:active {
+	outline: none;
+	background: var(--secondary-color);
+}
+
+.green-button {
+	border-color: rgb(73, 255, 78);
+	background: rgb(187, 255, 189);
+	color: rgb(17, 17, 17);
+}
+
+.green-button:active {
+	background: rgb(122, 255, 126);
+}
+
+.post--it {
+	display: flex;
+	width: 30%;
+
+	margin-left: 31px;
+
+	margin-top: 50px;
+}
+
+.ep-board {
+	display: inline-block;
+	height: 70vh;
+	width: 60vw;
+	background: var(--light-color);
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgb(61, 61, 61);
+	margin-top: 60px;
+}
+
+.dotted {
+	background-image: -webkit-repeating-radial-gradient(
+		center center,
+		rgba(0, 0, 0, 0.2),
+		rgba(0, 0, 0, 0.2) 1px,
+		transparent 1px,
+		transparent 100%
+	);
+	background-image: -moz-repeating-radial-gradient(
+		center center,
+		rgba(0, 0, 0, 0.2),
+		rgba(0, 0, 0, 0.2) 1px,
+		transparent 1px,
+		transparent 100%
+	);
+	background-image: -ms-repeating-radial-gradient(
+		center center,
+		rgba(0, 0, 0, 0.2),
+		rgba(0, 0, 0, 0.2) 1px,
+		transparent 1px,
+		transparent 100%
+	);
+	background-image: repeating-radial-gradient(
+		center center,
+		rgba(0, 0, 0, 0.2),
+		rgba(0, 0, 0, 0.2) 1px,
+		transparent 1px,
+		transparent 100%
+	);
+	-webkit-background-size: 8px 8px;
+	-moz-background-size: 8px 8px;
+	background-size: 8px 8px;
+}

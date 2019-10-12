@@ -6,9 +6,10 @@
 }
 .right__rectangle {
 	position: absolute;
-	width: 968px;
+	width: 80%;
 	height: 70px;
-	left: 312px;
+	right: 0px;
+	float: right;
 	top: 0px;
 	background: #6772e5;
 	border-radius: 0px 0px 0px 100px;
@@ -18,8 +19,10 @@
 	background-color: transparent;
 	width: 80px;
 	height: 32px;
+	float: right;
+
 	right: 20px;
-	top: 20px;
+	margin: 20px;
 	border: 2px solid #d1d3f3;
 	box-sizing: border-box;
 	border-radius: 20px;
@@ -27,7 +30,27 @@
 }
 .right__button:active {
 	vertical-align: top;
-	padding: 8px;
+	padding: 0;
+	transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+	border-color: #34345d;
+}
+.right__help__button {
+	position: absolute;
+	background-color: transparent;
+	width: 35px;
+	height: 32px;
+	float: right;
+
+	right: 120px;
+	margin: 20px;
+	border: 2px solid #d1d3f3;
+	box-sizing: border-box;
+	border-radius: 100%;
+	cursor: pointer;
+}
+.right__help__button:active {
+	vertical-align: top;
+	padding: 0;
 	transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 	border-color: #34345d;
 }
@@ -37,10 +60,8 @@
 	font-weight: 600;
 	font-size: 15px;
 	line-height: 24px;
-	display: flex;
 	align-items: center;
 	text-align: center;
-	position: absolute;
 	bottom: 0px;
 	top: 0px;
 	color: #e5e5e5;
