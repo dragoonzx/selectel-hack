@@ -48,11 +48,9 @@ async def counter(websocket, path):
         await websocket.send(state_event())
         async for message in websocket:
             data = json.loads(message)
-            if data:
+            if data["data"] != '':
                 STATE["value"] = data["data"]
-                STATES = []
-                for state in STATE["value"]:
-                    STATES.append(state["text"])
+                STATES.append(data["data"])
                 print(STATES)
                 await notify_state()
             else:
@@ -61,7 +59,7 @@ async def counter(websocket, path):
         await unregister(websocket)
 
 
-start_server = websockets.serve(counter, "0.0.0.0", 3001)
+start_server = websockets.serve(counter, "0.0.0.0", 3002)
 
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
