@@ -1,0 +1,11 @@
+.ep-pin{
+    position: absolute;
+    padding: 5px 10px;
+    background: rgb(255, 255, 130);
+    height: max-content;
+    width: min-content;
+    box-shadow: 0 1px 1px rgb(61, 61, 61);
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: grabbing;
+}

@@ -1,0 +1,61 @@
+.ep-create-pin{
+    margin-top: 10px;
+    height: 50vh;
+    width: 20vw;
+    display: inline-block;
+    border-radius: 10px;
+    margin-left: 10vw;
+}
+
+.ep-create-pin__header{
+    text-align: left;
+    font-size: 25px;
+    color: white;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.pin-text-input{
+    width: 80%;
+    padding: 10px;
+    font-size: 14px;
+    margin: 8% 3%;
+    height: 20%;
+    outline: none;
+    resize: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgb(61, 61, 61);
+    background: var(--light-color);
+
+}
+
+.pin-text-input:active {
+    outline: none;
+}
+
+.ep-create-pin__create-button{
+    text-align: center;
+    height: 15%;
+    width: 80%;
+    margin: 8% 3%;
+    font-size: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--primary-color);
+    background: var(--light-color);
+    outline: none;
+}
+
+.ep-create-pin__create-button:active{
+    outline: none;
+    background: var(--secondary-color);
+}
+
+.green-button{
+    border-color: rgb(73, 255, 78);
+    background: rgb(187, 255, 189);
+    color: rgb(17, 17, 17);
+}
+
+.green-button:active{
+    background: rgb(122, 255, 126);
+}
