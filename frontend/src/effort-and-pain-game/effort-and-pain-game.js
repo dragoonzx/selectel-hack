@@ -16,7 +16,7 @@ class EffortAndPainGame extends React.Component {
     }
 
     componentDidMount(){
-        this.websocket = new WebSocket("ws://127.0.0.1:3001/");
+        this.websocket = new WebSocket("ws://46.182.24.183:3001/");
         this.websocket.onopen = ()=>{
             console.log('opened');
         }
