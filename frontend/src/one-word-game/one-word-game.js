@@ -24,8 +24,8 @@ export default function OneWordGame() {
 			console.log(data);
 			if (data.type === "data" && data.value !== "empty") {
 				console.log("UPDATING GAMEBOARD");
-				stickers.push(data.value);
-				handleStickers(stickers);
+				let newStickers = stickers.concat(data.value);
+				handleStickers(newStickers);
 			}
 		};
 	}, []);
