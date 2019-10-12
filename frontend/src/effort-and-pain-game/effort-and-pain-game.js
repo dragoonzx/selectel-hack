@@ -24,32 +24,32 @@ class EffortAndPainGame extends React.Component {
             console.log('closed');
         }
         this.websocket.onmessage = (event)=>{
-            console.log(this.state.pins);
+            console.log('MESSAGE SOCKET');
             let data = JSON.parse(event.data);
-            console.info(data);
+            console.log(data);
             if (data.type === 'data' && data.value !== 'empty') {
                 console.log('UPDATE PINS');
-                console.log(this.state.pins);
                 data.value.map((pin) => this.updatePin(pin));
+                console.log(this.state.pins);
             }
         };
     }
 
     updatePin(element){
-        console.log(this.state.pins);
-        console.log(element);
-        let itemId = this.state.pins.indexOf(element);
-        console.log(itemId);
+        let itemId = this.state.pins.find((item) => item.text == element.text);
         let newStatePins = Array.from(this.state.pins);
-        console.log(newStatePins);
-        if (itemId === -1 && element){
+        if (itemId === undefined){
             newStatePins.push(element);
         }else{
-            newStatePins[itemId].x = element.x;
-            newStatePins[itemId].y = element.y;
+            newStatePins[newStatePins.indexOf(itemId)] = element;
         }
-        this.setState({pins: newStatePins});
+        this.updatePinsState(Array.from(newStatePins));
         console.log(this.state.pins);
+    }
+
+    updatePinsState(newState){
+        this.setState({pins: newState});
+        this.forceUpdate();
     }
 
     addUserPin(text){
@@ -64,15 +64,14 @@ class EffortAndPainGame extends React.Component {
       }
 
       saveUserPins(){
+        console.log('SEND SOCKET');
+        console.log(this.state.pins);
         this.websocket.send(JSON.stringify({data: this.state.pins}));
       }
 
       updatePinsLocation(location){
-        console.log(location);
-          console.log(this.state.pins);
           let newState = this.state.pins.filter((item)=> item.text !== location.text);
           newState.push(location);
-          console.log(newState);
           newState.sort((a, b) => a.text - b.text);
         this.setState({pins:newState});
       }
@@ -88,7 +87,7 @@ class EffortAndPainGame extends React.Component {
                 </div>
                 <div style={{display: "flex"}}>
                     <PinBoardComponent updateLocation={this.updatePinsLocation} pins={this.state.pins}></PinBoardComponent>
-                    <CreatePinComponent handlerSave={this.saveUserPins} pins={this.props.pin} handlerCreate={this.addUserPin}></CreatePinComponent>
+                    <CreatePinComponent handlerSave={this.saveUserPins} handlerCreate={this.addUserPin}></CreatePinComponent>
                 </div>
                 
             </div>

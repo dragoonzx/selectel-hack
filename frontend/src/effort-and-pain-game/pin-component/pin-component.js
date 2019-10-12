@@ -9,7 +9,7 @@ class PinBoardComponent extends React.Component {
       pins: props.pins,
     };
   }
-    
+
 
 
 
@@ -34,7 +34,7 @@ class PinBoardComponent extends React.Component {
         return (
             <div className="ep-board dotted">
               {this.props.pins.map((item,index) => (
-                    <Draggable key={index} defaultPosition={{x: item.x, y: item.y}} bounds={{top: 0, left: 0, right: window.innerWidth*0.55, bottom: window.innerHeight*0.65}} {...dragHandlers}>
+                    <Draggable key={index} position={{x: item.x, y: item.y}} bounds={{top: 0, left: 0, right: window.innerWidth*0.55, bottom: window.innerHeight*0.65}} {...dragHandlers}>
                         <div title={item.x} className="ep-pin">
                             {item.text}
                         </div>
