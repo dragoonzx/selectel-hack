@@ -10,9 +10,10 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			appStatus: "TLP" //'OW', 'EAP', 'TLP', 'start'
+			appStatus: "TLP" //'start', 'OW', 'EAP', 'TLP'
 		};
 	}
+
 	render() {
 		return (
 			<>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./three-little-pigs-game.css";
 import ModalWindow from "../components/ModalWindow";
 import Switch from "./switch-component";
+import InfoPanel from "./info-panel";
 
 class ThreeLittlePigsGame extends Component {
 	constructor(props) {
@@ -17,6 +18,7 @@ class ThreeLittlePigsGame extends Component {
 		this.onCreateCardModal = this.onCreateCardModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
 		this.handleChooseType = this.handleChooseType.bind(this);
+		this.updateInfoPanel = this.updateInfoPanel.bind(this);
 	}
 
 	onCreateCardModal() {
@@ -48,6 +50,16 @@ class ThreeLittlePigsGame extends Component {
 	handleChooseType(event) {
 		this.setState({ cardType: event });
 	}
+
+	updateInfoPanel(text, type){
+		let newCards = this.state.cards.map((item)=>{
+			if (item.text === text){
+				item.type = type;
+			}
+			return item;
+		})
+		this.setState({cards: newCards})
+	}
 	render() {
 		return (
 			<>
@@ -77,11 +89,23 @@ class ThreeLittlePigsGame extends Component {
 					<div onClick={() => console.log("next game")} className="next-button">
 						NEXT GAME
 					</div>
-					<div className="house house-straw inline"></div>
-					<div className="vertical-divider inline"></div>
-					<div className="house house-hut inline"></div>
-					<div className="vertical-divider inline"></div>
-					<div className="house house-stone inline"></div>
+					<div className="house house-straw inline">
+						{(this.state.cards.filter((item)=> item.type === 1)).map((item,index)=>{
+							return <InfoPanel key={index} callback={this.updateInfoPanel} column={item.type} text={item.text}/>}
+						)}
+					</div>
+					<div style={{left: 'calc(33vw + 15px)'}} className="vertical-divider inline"></div>
+					<div className="house house-hut inline">
+						{(this.state.cards.filter((item)=> item.type === 2)).map((item, index)=>{
+							return <InfoPanel key={index} callback={this.updateInfoPanel} column={item.type} text={item.text}/>}
+						)}
+					</div>
+					<div style={{left: 'calc(66vw + 17px)'}} className="vertical-divider inline"></div>
+					<div className="house house-stone inline">
+						{(this.state.cards.filter((item)=> item.type === 3)).map((item, index)=>{
+							return <InfoPanel key={index} callback={this.updateInfoPanel} column={item.type} text={item.text}/>}
+						)}
+					</div>
 				</div>
 			</>
 		);
