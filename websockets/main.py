@@ -48,7 +48,7 @@ async def counter(websocket, path):
         async for message in websocket:
             data = json.loads(message)
             if data:
-                STATE["value"] = data
+                STATE["value"] = data["data"]
                 await notify_state()
             else:
                 logging.error("Massage is empty")
