@@ -14,17 +14,17 @@ class PinBoardComponent extends React.Component {
 
 
     onStart = () => {
-        this.setState({activeDrags: ++this.state.activeDrags});
+        console.log('OnStart');
       };
     
       onStop = (e, data) => {
-        //console.log(data);
-        this.setState({activeDrags: --this.state.activeDrags});
+        console.log('OnStop');
         let location = {
           text: data.node.innerText,
           x: data.x,
           y: data.y,
         }
+        console.log(this.props.pins);
         this.props.updateLocation(location);
       };
 
@@ -35,7 +35,7 @@ class PinBoardComponent extends React.Component {
             <div className="ep-board dotted">
               {this.props.pins.map((item,index) => (
                     <Draggable key={index} defaultPosition={{x: item.x, y: item.y}} bounds={{top: 0, left: 0, right: window.innerWidth*0.55, bottom: window.innerHeight*0.65}} {...dragHandlers}>
-                        <div className="ep-pin">
+                        <div title={item.x} className="ep-pin">
                             {item.text}
                         </div>
               </Draggable>))}
