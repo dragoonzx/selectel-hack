@@ -73,7 +73,6 @@ export default function OneWordGame() {
 					</div>
 				</ModalWindow>
 				<div style={{ padding: "20px", width: "100vw" }}>
-					{text !== "" && isModalOpen == false ? <Sticker text={text} /> : ""}
 					{stickers !== []
 						? stickers.map(value => {
 								return <Sticker text={value} />;
