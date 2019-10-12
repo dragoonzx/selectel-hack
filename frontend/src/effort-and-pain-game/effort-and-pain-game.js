@@ -40,13 +40,16 @@ class EffortAndPainGame extends React.Component {
         console.log(element);
         let itemId = this.state.pins.indexOf(element);
         console.log(itemId);
-        let newStatePins = this.state.pins;
-        if (itemId === -1){
+        let newStatePins = Array.from(this.state.pins);
+        console.log(newStatePins);
+        if (itemId === -1 && element){
             newStatePins.push(element);
         }else{
             newStatePins[itemId].x = element.x;
             newStatePins[itemId].y = element.y;
         }
+        this.setState({pins: newStatePins});
+        console.log(this.state.pins);
     }
 
     addUserPin(text){
