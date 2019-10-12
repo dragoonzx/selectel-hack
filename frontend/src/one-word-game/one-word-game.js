@@ -8,9 +8,6 @@ export default function OneWordGame() {
 	const [websocket, setWebsocket] = React.useState(
 		new WebSocket("ws://46.182.24.183:3002/")
 	);
-	const handleStickers = stickers => {
-		setStickers(stickers);
-	};
 	React.useEffect(() => {
 		websocket.onopen = () => {
 			console.log("opened");
@@ -24,8 +21,8 @@ export default function OneWordGame() {
 			console.log(data);
 			if (data.type === "data" && data.value !== "empty") {
 				console.log("UPDATING GAMEBOARD");
-				let newStickers = stickers.concat(data.value);
-				handleStickers(newStickers);
+				setStickers(stickers => [...stickers, data.value]);
+				console.log(stickers);
 			}
 		};
 	}, []);
@@ -43,8 +40,6 @@ export default function OneWordGame() {
 		websocket.send(JSON.stringify({ data: text }));
 		toggleModal(false);
 	};
-	console.log(text);
-	console.log(stickers);
 	return (
 		<div style={{ display: "flex" }}>
 			<div className="ep-game">
