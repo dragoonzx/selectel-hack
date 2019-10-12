@@ -23,3 +23,18 @@ html{
   margin-top: 10px;
   margin-bottom: 5px;
 }
+
+
+.game-header{
+  font-size: 21px;
+  height: fit-content;
+  width: fit-content;
+  color:white;
+}
+
+.game-descr{
+  color: #AAABCE;
+  height: fit-content;
+  width: fit-content;
+  font-size: 16px;
+}

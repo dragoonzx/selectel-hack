@@ -1,0 +1,28 @@
+.switch{
+    height: 20px;
+    width: 100%;
+    background: #d1d3f3;
+    margin-top: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 0;
+    border: 2px solid var(--secondary-color);
+}
+
+.switch-item{
+    display: inline-block;
+    width: calc(33% - 5px);
+    font-size: 10px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.switch-center{
+    border-right: 2px solid var(--secondary-color);
+    border-left: 2px solid var(--secondary-color);
+}
+
+.switch-item-active{
+    background: var(--secondary-color);
+}

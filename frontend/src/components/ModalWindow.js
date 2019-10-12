@@ -9,7 +9,7 @@ export default function ModalWindow(props) {
 		}
 	};
 	return (
-		<div>
+		<div className="modal-window">
 			<div className="modal">{props.children}</div>
 			<div className="bg" onClick={e => close(e)} />
 		</div>

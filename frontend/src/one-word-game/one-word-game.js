@@ -69,8 +69,8 @@ export default function OneWordGame() {
 				</ModalWindow>
 				<div style={{ padding: "20px", width: "100vw" }}>
 					{stickers !== []
-						? stickers.map(value => {
-								return <Sticker text={value} />;
+						? stickers.map((value,index) => {
+								return <Sticker key={index} text={value} />;
 						  })
 						: " "}
 				</div>

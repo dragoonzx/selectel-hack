@@ -21,6 +21,7 @@ class CreatePinComponent extends React.Component {
     }
 
     createPins(){
+        this.setState({userPinText: ''});
         this.props.handlerCreate(this.state.userPinText);
     }
 

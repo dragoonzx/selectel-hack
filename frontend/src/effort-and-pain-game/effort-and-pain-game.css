@@ -22,20 +22,6 @@
     padding: calc(10vh - 35px) 5vw;
 }
 
-.game-header{
-  font-size: 21px;
-  height: fit-content;
-  width: fit-content;
-  color:white;
-}
-
-.game-descr{
-  color: #AAABCE;
-  height: fit-content;
-  width: fit-content;
-  font-size: 16px;
-}
-
 .ep-pin{
   position: absolute;
   padding: 10px;

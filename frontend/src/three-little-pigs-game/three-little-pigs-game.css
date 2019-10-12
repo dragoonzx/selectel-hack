@@ -1,0 +1,87 @@
+.inline{
+    display: inline-block;
+    margin: 10px;
+}
+
+.house{
+    width: calc(27vw - 2px);
+    background: #34345D;
+    height: 100vh;
+}
+
+.tlp-game{
+    padding: calc(10vh - 35px) 5vw;
+    padding-right: 4vw;
+}
+
+.vertical-divider{
+    background: white;
+    width: 1px;
+    height: 100vh;
+}
+
+.house-straw{
+    background-image: url("../straw.svg");
+    background-size: 18vw;
+    background-position-y: center;
+    background-position-x: center;
+    background-repeat: no-repeat;
+}
+
+.house-stone{
+    background-image: url("../house.svg");
+    background-size: 18vw;
+    background-position-y: center;
+    background-position-x: center;
+    background-repeat: no-repeat;
+}
+
+.house-hut{
+    background-image: url("../hut.svg");
+    background-size: 18vw;
+    background-position-y: center;
+    background-position-x: center;
+    background-repeat: no-repeat;
+}
+
+.add-button{
+    position: absolute;
+    height: 36px;
+    width: 40px;
+    border-radius: 30px;
+    border: 1px solid var(--light-color);
+    color: var(--light-color);
+    font-size: 30px;
+    text-align: center;
+    top: 120px;
+    right: 50px;
+    cursor: pointer;
+}
+
+.card-text-input {
+    margin-top: 20px;
+    display: inline-block;
+    height: 30px;
+    font-size: 15px;
+    outline: none;
+    width: 300px;
+    background: var(--light-color);
+}
+
+.card-text-input :active{
+    outline: none;
+}
+
+.card-header{
+    text-align: center;
+    font-size: 20px;
+}
+
+.green-button{
+    display: inline-block;
+    height: 30px;
+    margin-left: 18px;
+    line-height: 30.5px;
+    border-radius: 5px;
+    padding: 5px;
+}
