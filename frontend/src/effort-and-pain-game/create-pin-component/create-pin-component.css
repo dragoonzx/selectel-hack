@@ -7,7 +7,7 @@
     margin-left: 10vw;
 }
 
-.ep-create-pin__header{
+.ep-create-pin__header-1{
     text-align: left;
     font-size: 25px;
     color: white;
@@ -33,7 +33,7 @@
     outline: none;
 }
 
-.ep-create-pin__create-button{
+.ep-create-pin__create-button-1{
     text-align: center;
     height: 15%;
     width: 80%;
@@ -45,17 +45,17 @@
     outline: none;
 }
 
-.ep-create-pin__create-button:active{
+.ep-create-pin__create-button-1:active{
     outline: none;
     background: var(--secondary-color);
 }
 
-.green-button{
+.green-button-1{
     border-color: rgb(73, 255, 78);
     background: rgb(187, 255, 189);
     color: rgb(17, 17, 17);
 }
 
-.green-button:active{
+.green-button-1:active{
     background: rgb(122, 255, 126);
 }

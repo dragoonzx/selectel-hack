@@ -108,9 +108,9 @@
 	outline: none;
 }
 
-.ep-create-pin__create-button {
+.ep-create-pin__create-button-2 {
 	text-align: center;
-	height: 35px;
+	height: 50px;
 	width: 20%;
 	margin-bottom: 0px;
 	margin-top: 1px;
@@ -137,18 +137,18 @@
 	line-height: 32px;
 }
 
-.ep-create-pin__create-button:active {
+.ep-create-pin__create-button-2:active {
 	outline: none;
 	background: var(--secondary-color);
 }
 
-.green-button {
+.green-button-2 {
 	border-color: rgb(73, 255, 78);
 	background: rgb(187, 255, 189);
 	color: rgb(17, 17, 17);
 }
 
-.green-button:active {
+.green-button-2:active {
 	background: rgb(122, 255, 126);
 }
 
@@ -156,46 +156,3 @@
 	display: flex;
 }
 
-.ep-board {
-	display: inline-block;
-	height: 70vh;
-	width: 60vw;
-	background: var(--light-color);
-	border-radius: 10px;
-	box-shadow: 0 2px 4px rgb(61, 61, 61);
-	margin-top: 60px;
-}
-
-.dotted {
-	background-image: -webkit-repeating-radial-gradient(
-		center center,
-		rgba(0, 0, 0, 0.2),
-		rgba(0, 0, 0, 0.2) 1px,
-		transparent 1px,
-		transparent 100%
-	);
-	background-image: -moz-repeating-radial-gradient(
-		center center,
-		rgba(0, 0, 0, 0.2),
-		rgba(0, 0, 0, 0.2) 1px,
-		transparent 1px,
-		transparent 100%
-	);
-	background-image: -ms-repeating-radial-gradient(
-		center center,
-		rgba(0, 0, 0, 0.2),
-		rgba(0, 0, 0, 0.2) 1px,
-		transparent 1px,
-		transparent 100%
-	);
-	background-image: repeating-radial-gradient(
-		center center,
-		rgba(0, 0, 0, 0.2),
-		rgba(0, 0, 0, 0.2) 1px,
-		transparent 1px,
-		transparent 100%
-	);
-	-webkit-background-size: 8px 8px;
-	-moz-background-size: 8px 8px;
-	background-size: 8px 8px;
-}

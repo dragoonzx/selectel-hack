@@ -60,8 +60,8 @@ export default function OneWordGame() {
 								/>
 								<button
 									onClick={closeModal}
-									style={{ marginLeft: "25px", marginTop: "0px" }}
-									className="ep-create-pin__create-button green-button"
+									style={{ marginLeft: "15px", marginTop: "0px" }}
+									className="ep-create-pin__create-button-2 green-button-2"
 								>
 									Post
 								</button>

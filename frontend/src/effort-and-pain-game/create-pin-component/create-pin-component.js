@@ -28,18 +28,18 @@ class CreatePinComponent extends React.Component {
     render(){
         return (
             <div className="ep-create-pin">
-                <div className="ep-create-pin__header">
+                <div className="ep-create-pin__header-1">
                     1. Write your <span style={{color:'rgb(255, 240, 58'}}>relation</span>:
                 </div>
                 <textarea onChange={this.handleChangeText} className="pin-text-input"/>
-                <div className="ep-create-pin__header">
+                <div className="ep-create-pin__header-1">
                     2. Create <span style={{color: 'rgb(255, 27, 124)'}}>pin</span>:
                 </div>
-                <button onClick={this.createPins}  className="ep-create-pin__create-button">Create</button>
-                <div className="ep-create-pin__header">
+                <button onClick={this.createPins}  className="ep-create-pin__create-button-1">Create</button>
+                <div className="ep-create-pin__header-1">
                     3. <span style={{color: 'rgb(73, 255, 78)'}}>Drag it</span> to correct position and save:
                 </div>
-                <button onClick={this.savePins} className="ep-create-pin__create-button green-button">Save</button>
+                <button onClick={this.savePins} className="ep-create-pin__create-button-1 green-button-1">Save</button>
             </div>
         )
       }

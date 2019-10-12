@@ -36,9 +36,9 @@ class StartScreen extends Component{
                     </div>
 
                 </div>
-                <div className="event-panel-second">
+                <div onMouseOver={this.mouseEnter} onMouseLeave={this.mouseLeave}  className="event-panel-second">
                     <div className={this.state.isActive ? "event-panel__retro-back jumping" : "event-panel__retro-back"}></div>
-                    <div onMouseOver={this.mouseEnter} onMouseLeave={this.mouseLeave} className="event-panel__learning">
+                    <div className="event-panel__learning">
                         <div className="event-panel__learning-header">
                             Learn about Retrospectives more...
                         </div>
