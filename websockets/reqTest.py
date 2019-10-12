@@ -1,3 +1,5 @@
-import requests
-r = requests.get('https://www.google.ru/')
-print (r.text)
+import pickle
+obj = ['asnfklqnfkl', 'sadnld', 'asndlas', 'gkfmr']
+x = pickle.dumps(obj)
+obj1 = pickle.loads(x)
+print(obj1)
