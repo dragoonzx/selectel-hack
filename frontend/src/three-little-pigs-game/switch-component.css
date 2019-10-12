@@ -11,11 +11,13 @@
 
 .switch-item{
     display: inline-block;
-    width: calc(33% - 5px);
+    width: calc(34% - 2.7px);
     font-size: 10px;
     text-align: center;
     font-weight: bold;
     cursor: pointer;
+    height: 100%;
+    line-height: 22px;
 }
 
 .switch-center{
