@@ -79,6 +79,11 @@
 }
 
 .ep-create-pin__header {
+	display: flex;
+
+	flex-direction: column;
+
+	justify-content: center;
 	text-align: left;
 	font-size: 25px;
 	color: white;
@@ -87,11 +92,11 @@
 }
 
 .pin-text-input {
-	width: 80%;
+	width: 60%;
 	padding: 10px;
-	font-size: 14px;
+	font-size: 10px;
 	margin: 8% 3%;
-	height: 20%;
+	height: 10px;
 	outline: none;
 	resize: none;
 	border-radius: 10px;
@@ -105,14 +110,16 @@
 
 .ep-create-pin__create-button {
 	text-align: center;
-	height: 15%;
-	width: 80%;
-	margin: 8% 3%;
+	height: 35px;
+	width: 20%;
+	margin-bottom: 0px;
+	margin-top: 1px;
 	font-size: 20px;
 	border-radius: 10px;
 	border: 1px solid var(--primary-color);
 	background: var(--light-color);
 	outline: none;
+	cursor: pointer;
 }
 
 .ep-create-pin__create-button:active {
@@ -132,11 +139,6 @@
 
 .post--it {
 	display: flex;
-	width: 30%;
-
-	margin-left: 31px;
-
-	margin-top: 50px;
 }
 
 .ep-board {
