@@ -9,6 +9,7 @@ STATE = {"value": "empty"}
 
 USERS = set()
 
+STATES = []
 
 def state_event():
     return json.dumps({"type": "data", **STATE})
@@ -49,6 +50,10 @@ async def counter(websocket, path):
             data = json.loads(message)
             if data:
                 STATE["value"] = data["data"]
+                STATES = []
+                for state in STATE["value"]:
+                    STATES.append(state["text"])
+                print(STATES)
                 await notify_state()
             else:
                 logging.error("Massage is empty")
@@ -56,7 +61,7 @@ async def counter(websocket, path):
         await unregister(websocket)
 
 
-start_server = websockets.serve(counter, "localhost", 3001)
+start_server = websockets.serve(counter, "0.0.0.0", 3001)
 
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
