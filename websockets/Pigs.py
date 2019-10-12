@@ -2,7 +2,6 @@ import asyncio
 import json
 import logging
 import websockets
-#import pickle
 
 logging.basicConfig()
 
@@ -13,7 +12,7 @@ USERS = set()
 STATES = []
 
 def state_event():
-    return json.dumps({"type": "data", **STATE})
+    return json.dumps({"type": "data", "value": STATES})
 
 
 def users_event():
@@ -50,22 +49,21 @@ async def counter(websocket, path):
         async for message in websocket:
             data = json.loads(message)
             if data:
-                STATE["value"] = data["data"]
-                STATES = []
-                for state in STATE["value"]:
-                    STATES.append(state["text"])
+                STATE["value"] = data
+                if STATE["value"]["text"] in map(lambda x: x["text"], STATES):
+                    index = list(map(lambda x: x["text"], STATES)).index(STATE["value"]["text"])
+                    STATES[index] = STATE["value"]
+                else:
+                     STATES.append(STATE["value"])
                 print(STATES)
                 await notify_state()
             else:
                 logging.error("Massage is empty")
     finally:
         await unregister(websocket)
-#        if len(USERS) == 0:
-#            forDB = pickle.dumps(STATES)
 
 
-
-start_server = websockets.serve(counter, "0.0.0.0", 3001)
+start_server = websockets.serve(counter, "0.0.0.0", 3003)
 
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
