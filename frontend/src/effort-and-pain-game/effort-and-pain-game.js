@@ -2,7 +2,6 @@ import React from 'react';
 import './effort-and-pain-game.css';
 import PinBoardComponent from './pin-component/pin-component';
 import CreatePinComponent from './create-pin-component/create-pin-component';
-import WebSocketModule from '../modules/websocket-module';
 
 class EffortAndPainGame extends React.Component {
     constructor(props){
