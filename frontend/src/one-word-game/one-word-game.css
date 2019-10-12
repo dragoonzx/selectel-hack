@@ -122,6 +122,21 @@
 	cursor: pointer;
 }
 
+.next-button {
+	position: absolute;
+	height: 36px;
+	width: 110px;
+	border-radius: 30px;
+	border: 1px solid var(--light-color);
+	color: var(--light-color);
+	font-size: 15px;
+	text-align: center;
+	top: 120px;
+	right: 50px;
+	cursor: pointer;
+	line-height: 32px;
+}
+
 .ep-create-pin__create-button:active {
 	outline: none;
 	background: var(--secondary-color);

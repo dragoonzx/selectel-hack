@@ -45,7 +45,9 @@ export default function OneWordGame() {
 			<div className="ep-game">
 				<div className="game-header">One Word</div>
 				<div className="game-descr">One Word</div>
-
+				<div onClick={() => console.log("next game")} className="next-button">
+					NEXT GAME
+				</div>
 				<ModalWindow isOpen={isModalOpen} onClose={closeModal}>
 					<div className="post--it">
 						<div className="ep-create-pin__header">
@@ -69,7 +71,7 @@ export default function OneWordGame() {
 				</ModalWindow>
 				<div style={{ padding: "20px", width: "100vw" }}>
 					{stickers !== []
-						? stickers.map((value,index) => {
+						? stickers.map((value, index) => {
 								return <Sticker key={index} text={value} />;
 						  })
 						: " "}
