@@ -44,6 +44,7 @@ class EffortAndPainGame extends React.Component {
 
 	endGame = e => {
 		this.props.onEndGame("TLP");
+		console.log('sam3');
 		this.websocket.close();
 	};
 

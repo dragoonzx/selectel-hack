@@ -5,9 +5,19 @@ class FinalPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            info: null
         };
     }
+
+    async componentWillMount() {
+        let result = await fetch(`http://46.182.24.183:8000/sessions/abc`, {method:'GET',
+            header:
+                'Access-Control-Allow-Origin: *'});
+        let resultAsync = await result.json();
+        this.setState({info: resultAsync});
+        console.log(resultAsync);
+    }
+
 
     render() {
         return (
@@ -15,17 +25,18 @@ class FinalPage extends Component {
                 <div className="game-header">End of the event</div>
                 <div className="game-descr">Watch your results and send in Slack</div>
 
-
                 <div className="final-panel first-fp">
                     <div className="plus-icon"></div>
                     <div className="results-panel">
-                        dssfefewfefewfessd wefewfewk,ew newnbew dnewnmdj,ewf ewjdmenwnfmewdnewhjfewmnfmewnmfwe c w ewfbjewnf wf nwef ewfnmwe fw
+                        {this.state.info !== null ? this.state.info.aff_pain.split('&').map((item) => `${item}, `) : ''
+                        }
                     </div>
                 </div>
                 <div className="final-panel second-fp">
                     <div className="minus-icon"></div>
                     <div className="results-panel">
-
+                        {this.state.info !== null ? this.state.info.pigs.split('&').map((item) => `${item}\n`)  : ''
+                        }
                     </div>
                 </div>
                 <div className="final-panel third-fp">

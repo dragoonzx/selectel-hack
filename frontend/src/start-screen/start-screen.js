@@ -36,6 +36,7 @@ class StartScreen extends Component {
 		if (await result) {
 			this.props.onEndGame('OW');
 		}
+		this.props.callbackInput(this.state.input);
 	}
 
 	changeInput(event){

@@ -35,6 +35,7 @@ export default function OneWordGame(props) {
 
 	const endGame = e => {
 		props.onEndGame("EAP");
+		console.log('sam');
 		websocket.close();
 	};
 

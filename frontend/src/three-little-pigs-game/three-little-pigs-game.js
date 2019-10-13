@@ -42,6 +42,7 @@ class ThreeLittlePigsGame extends Component {
 
 	endGame = e => {
 		this.props.onEndGame("final");
+		console.log('sam2');
 		this.websocket.close();
 	};
 

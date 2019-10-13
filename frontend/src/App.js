@@ -11,20 +11,26 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			appStatus: "start" //'start', 'OW', 'EAP', 'TLP', 'final'
+			appStatus: "start" ,//'start', 'OW', 'EAP', 'TLP', 'final'
+			id: '',
 		};
+		this.callbackEventId = this.callbackEventId.bind(this);
 	}
 	handleGameChange = nextGame => {
 		this.setState({
 			appStatus: nextGame
 		});
 	};
+
+	callbackEventId(event){
+		this.setState({id: event});
+	}
 	render() {
 		return (
 			<>
 				<Header callback={this.handleGameChange} status={this.state.appStatus}></Header>
 				{this.state.appStatus === "start" && (
-					<StartScreen onEndGame={this.handleGameChange}></StartScreen>
+					<StartScreen callbackInput={this.callbackEventId}  onEndGame={this.handleGameChange}></StartScreen>
 				)}
 				{this.state.appStatus === "OW" && (
 					<OneWordGame onEndGame={this.handleGameChange} />
@@ -35,7 +41,7 @@ class App extends Component {
 				{this.state.appStatus === "TLP" && (
 					<ThreeLittlePigsGame onEndGame={this.handleGameChange} />
 				)}
-				{this.state.appStatus === "final" && <FinalPage />}
+				{this.state.appStatus === "final" && <FinalPage  id={this.state.id}/>}
 			</>
 		);
 	}
