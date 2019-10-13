@@ -27,12 +27,12 @@
 
 .slack-icon{
     background-image: url("../slack.svg");
-    height: 30vh;
-    width: 15vw;
+    height: 20vh;
+    width: 20vh;
     background-size: contain;
     background-repeat: no-repeat;
-    margin-left: 5vw;
     margin-top: 7vh;
+    margin-left: calc(12.5vw - 10vh);
     animation: animation-rotation linear 8s infinite;
 }
 
@@ -57,11 +57,42 @@
     margin-left: 4vw;
     text-align: center;
     font-size: 19px;
-    margin-top: 5vh;
+    margin-top: 15vh;
     line-height: 41.5px;
     cursor: pointer;
 }
 
 .final-button:active{
     box-shadow: none;
+}
+
+.plus-icon{
+    background-image: url("../leva.png");
+    height: 20vh;
+    width: 20vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 3vh;
+    margin-left: calc(12.5vw - 10vh);
+}
+
+.minus-icon{
+    background-image: url("../petuh.png");
+    height: 20vh;
+    width: 20vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 3vh;
+    margin-left: calc(12.5vw - 10vh);
+}
+
+.results-panel{
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    height: 30vh;
+    width:20vw;
+    margin-left: calc(2.5vw - 10px);
+    overflow: scroll;
+    line-height: 19px;
+    padding: 8px;
 }

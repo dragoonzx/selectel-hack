@@ -9,3 +9,21 @@
     font-size: 12px;
     cursor: grabbing;
 }
+
+.pain{
+    color: #8390ce;
+    font-size: 40px;
+    font-weight: bold;
+    position: relative;
+    top: calc(100% - 40px);
+    text-align: center;
+
+}
+
+.effort{
+    width: 10px;
+    font-size: 40px;
+    color: #8390ce;
+    margin-left: 2px;
+    margin-top: calc(35vh - 187px);
+}

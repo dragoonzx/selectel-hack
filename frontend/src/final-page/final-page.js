@@ -17,10 +17,16 @@ class FinalPage extends Component {
 
 
                 <div className="final-panel first-fp">
-
+                    <div className="plus-icon"></div>
+                    <div className="results-panel">
+                        dssfefewfefewfessd wefewfewk,ew newnbew dnewnmdj,ewf ewjdmenwnfmewdnewhjfewmnfmewnmfwe c w ewfbjewnf wf nwef ewfnmwe fw
+                    </div>
                 </div>
                 <div className="final-panel second-fp">
+                    <div className="minus-icon"></div>
+                    <div className="results-panel">
 
+                    </div>
                 </div>
                 <div className="final-panel third-fp">
                     <div className="slack-icon"></div>
