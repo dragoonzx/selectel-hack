@@ -1,0 +1,67 @@
+.final-page{
+    padding: calc(10vh - 35px) 5vw;
+}
+
+.final-panel{
+    position: absolute;
+    top: 30vh;
+    height: 60vh;
+    width: 25vw;
+    background: var(--light-color);
+    border-radius: 10px;
+    left: 5vw;
+    box-shadow: 0 5px 5px #34345D;
+    /*overflow: -moz-scrollbars-vertical;*/
+}
+
+.first-fp{
+    left: 5vw;
+}
+
+.second-fp{
+    left: 38vw;
+}
+.third-fp{
+    left: 69vw;
+}
+
+.slack-icon{
+    background-image: url("../slack.svg");
+    height: 30vh;
+    width: 15vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 5vw;
+    margin-top: 7vh;
+    animation: animation-rotation linear 8s infinite;
+}
+
+@keyframes animation-rotation {
+    0%{
+        transform: rotateZ(0deg);
+    }
+    50%{
+        transform: rotateZ(180deg);
+    }
+    100%{
+        transform: rotateZ(360deg);
+    }
+}
+
+.final-button{
+    width: 17vw;
+    border-radius: 5px;
+    border: 3px solid var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: 0 2px 2px #34345D;
+    margin-left: 4vw;
+    text-align: center;
+    font-size: 19px;
+    margin-top: 5vh;
+    line-height: 41.5px;
+    cursor: pointer;
+}
+
+.final-button:active{
+    box-shadow: none;
+}
