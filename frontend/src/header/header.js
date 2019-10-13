@@ -7,6 +7,8 @@ function Header() {
 	const openSignInWindow = () => {
 		setOpenSignIn(true);
 	};
+	const [userName, setUserName] = React.useState(null);
+
 	const closeSignInWindow = () => {
 		setOpenSignIn(false);
 	};
@@ -25,12 +27,26 @@ function Header() {
 			password: e.target.value
 		});
 	};
+	const passwordCheck = async () => {
+		let result = await fetch(`http://46.182.24.183:8000/user/${userInfo.login}/${userInfo.password}`, {method:'GET',
+		header:
+		'Access-Control-Allow-Origin: *'});
+		let resultAsync = await result.json();
+		console.log(resultAsync);
+		if (!resultAsync.detail && resultAsync !== false){
+			setUserName(resultAsync);
+			closeSignInWindow();
+		}else{
+
+		}
+		console.log(resultAsync);
+	};
 	console.log(userInfo);
 	return (
 		<div className="app-header">
 			<ModalWindow isOpen={isSignInOpen} onClose={() => closeSignInWindow()}>
-				<div class="wrap">
-					<div class="avatar">
+				<div className="wrap">
+					<div className="avatar">
 						<img src={require("../test.svg")}></img>
 					</div>
 					<input
@@ -39,7 +55,7 @@ function Header() {
 						onChange={loginHandler}
 						required
 					></input>
-					<div class="bar">
+					<div className="bar">
 						<i></i>
 					</div>
 					<input
@@ -48,10 +64,10 @@ function Header() {
 						onChange={passwordHandler}
 						required
 					></input>
-					<a href="" class="forgot_link">
+					<a href="" className="forgot_link">
 						forgot ?
 					</a>
-					<button>Sign in</button>
+					<button onClick={passwordCheck}>Sign in</button>
 				</div>
 			</ModalWindow>
 			<h1 className="header__logo">
@@ -64,9 +80,9 @@ function Header() {
 				>
 					<div className="right__button__text">?</div>
 				</button>
-				<button className="right__button" onClick={() => openSignInWindow()}>
+				{userName === null ? <button className="right__button" onClick={() => openSignInWindow()}>
 					<div className="right__button__text">SIGN IN</div>
-				</button>
+				</button>: <div className="right_text">{userName}</div>}
 			</div>
 		</div>
 	);

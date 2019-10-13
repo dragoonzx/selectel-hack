@@ -6,7 +6,7 @@ import Sticker from "./sticker";
 export default function OneWordGame(props) {
 	const [stickers, setStickers] = React.useState([]);
 	const [websocket, setWebsocket] = React.useState(
-		new WebSocket("ws://46.182.24.183:3002/")
+		new WebSocket("ws://46.182.24.183:3004/")
 	);
 	React.useEffect(() => {
 		websocket.onopen = () => {
