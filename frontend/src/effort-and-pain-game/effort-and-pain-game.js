@@ -29,7 +29,13 @@ class EffortAndPainGame extends React.Component {
 			console.log(data);
 			if (data.type === "data" && data.value !== "empty") {
 				console.log("UPDATE PINS");
-				data.value.map(pin => this.updatePin(pin));
+				data.value.map((item) => {
+					console.log(item);
+					item.x = item.x/window.innerWidth;
+					item.y = item.y/window.innerHeight;
+					console.log(item);
+					return item;
+				}).map(pin => this.updatePin(pin));
 				console.log(this.state.pins);
 			}
 		};
@@ -43,11 +49,7 @@ class EffortAndPainGame extends React.Component {
 		} else {
 			newStatePins[newStatePins.indexOf(itemId)] = element;
 		}
-		this.updatePinsState(Array.from(newStatePins.map((item) => {
-			item.x = item.x/window.innerWidth;
-			item.y = item.y/window.innerHeight;
-			return item;
-		})));
+		this.updatePinsState(Array.from(newStatePins));
 		console.log(this.state.pins);
 	}
 
@@ -70,9 +72,11 @@ class EffortAndPainGame extends React.Component {
 	saveUserPins() {
 		console.log("SEND SOCKET");
 		console.log(this.state.pins);
-		this.websocket.send(JSON.stringify({ data: this.state.pins.map((item)=>{
-				item.x = item.x*window.innerWidth;
-				item.y = item.y*window.innerHeight;
+		this.websocket.send(JSON.stringify({ data: this.state.pins.map((item) => {
+				console.log(item);
+				item.x = item.x/window.innerWidth;
+				item.y = item.y/window.innerHeight;
+				console.log(item);
 				return item;
 			}) }));
 	}
