@@ -11,7 +11,7 @@ import psycopg2
 from psycopg2 import sql
 from slackclient import SlackClient
 
-TOKEN = 'xoxb-778749144738-795422339110-30gEq1TjPfsw1JqImjBEeuNO'
+TOKEN = 'xoxb-778749144738-795422339110-71IBnHNHnXgGt6j21j2ruBFh'
 # instantiate Slack client
 slack_client = SlackClient(TOKEN)
 # starterbot's user ID in Slack: value is assigned after the bot starts up
@@ -76,7 +76,7 @@ def handle_command(command, channel):
         user_ids_external = set([user_ids_external[i][0] for i in range(len(user_ids_external))]) 
 
         #Get dictionary of members
-        user_list = requests.get('https://slack.com/api/users.list?token=xoxb-778749144738-795422339110-30gEq1TjPfsw1JqImjBEeuNO').json()['members']
+        user_list = requests.get('https://slack.com/api/users.list?token={token}'.format(token=TOKEN)).json()['members']
         
         #Make relevant dataframe and set of internal user ids
         user_dataframe = pd.DataFrame(user_list)
@@ -104,17 +104,19 @@ def handle_command(command, channel):
             #Make query happen
             cursor.execute(insertion_query)
             conn.commit()
-            
-            response  = 'Session started! New members added. Authentication code is: {code}'.format(code="".join(random.sample(alphabet, 10)))
+            auth_code = "".join(random.sample(alphabet, 10))
+            response  = 'Session started! New members added. Authentication code is: {code}'.format(code=auth_code)
             
             for user in records_difference:
+                #Opening dialogues with all users
                 user_id = requests.post('https://slack.com/api/im.open', data={'token': TOKEN, 'user': user}).json()
+                #If the request succeeded
                 if user_id['ok'] == True:
-                    
+                    #Get id of a user 
                     user_id = user_id['channel']['id']
-                    user_info = (users_difference_dataframe[users_difference_dataframe['id'] == user]['real_name'].iloc[0],
+                    user_info = (users_difference_dataframe[users_difference_dataframe['id'] == user]['id'].iloc[0],
                              users_difference_dataframe[users_difference_dataframe['id'] == user]['passwords'].iloc[0])
-                    
+                    #Send message to the user
                     slack_client.api_call('chat.postMessage', 
                     channel=user_id,
                     text='Hi! Your credentials are: \n \
@@ -124,6 +126,8 @@ def handle_command(command, channel):
                 else:
                     continue
             
+            #cursor.execute('INSERT INTO retros_session (id) VALUES ({val})'.format(val=auth_code))
+            #conn.commit()
             cursor.close()
             conn.close()
         else:
