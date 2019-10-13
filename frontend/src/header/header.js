@@ -29,7 +29,10 @@ function Header(props) {
 	};
 	const [isHelpActive, setHelpActive] = React.useState(false);
 	const helpHandler = () => {
-		setHelpActive(true);
+		if (props.status !== 'start'){
+			setHelpActive(true);
+		}
+
 	};
 	const closeHelp = () => {
 		setHelpActive(false);
@@ -82,7 +85,7 @@ function Header(props) {
 					<button onClick={passwordCheck}>Sign in</button>
 				</div>
 			</ModalWindow>
-			<ModalWindow isOpen={isHelpActive} onClose={() => closeHelp()}>
+			{props.status !== 'start' && <ModalWindow isOpen={isHelpActive} onClose={() => closeHelp()}>
 				{props.status === "EAP" && (
 					<>
 						<h2 style={{ color: "var(--light-color)" }}>Effort and Pain</h2>
@@ -137,7 +140,7 @@ function Header(props) {
 						</div>
 					</>
 				)}
-			</ModalWindow>
+			</ModalWindow>}
 			<h1 onClick={()=> props.callback('start')} className="header__logo">
 				RETRO<span style={{ color: "#AAABCE" }}>CTIVITIES</span>
 			</h1>
