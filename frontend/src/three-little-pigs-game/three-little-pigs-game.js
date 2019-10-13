@@ -19,7 +19,26 @@ class ThreeLittlePigsGame extends Component {
 		this.closeModal = this.closeModal.bind(this);
 		this.handleChooseType = this.handleChooseType.bind(this);
 		this.updateInfoPanel = this.updateInfoPanel.bind(this);
+		this.sendWebSocket = this.sendWebSocket.bind(this);
+
+		this.websocket = new WebSocket("ws://46.182.24.183:3003/");
+		this.websocket.onopen = () => {
+			console.log("opened");
+		};
+		this.websocket.onclose = () => {
+			console.log("closed");
+		};
+		this.websocket.onmessage = event => {
+			console.log("MESSAGE SOCKET");
+			let data = JSON.parse(event.data);
+			console.log(data);
+			if (data.type === "data" && data.value !== "empty") {
+				console.log("UPDATE PINS");
+				this.setState({cards:data.value});
+			}
+		};
 	}
+
 
 	onCreateCardModal() {
 		this.setState({ isModalOpen: true });
@@ -36,11 +55,16 @@ class ThreeLittlePigsGame extends Component {
 		});
 		console.log(newState);
 		this.state.cards = newState;
+		this.sendWebSocket({text: this.state.cardText, type: this.state.cardType});
 		this.state.cardText = "";
 		this.state.cardType = 1;
 		this.state.isModalOpen = false;
 		console.log(this.state);
 		this.forceUpdate();
+	}
+
+	sendWebSocket(item){
+		this.websocket.send(JSON.stringify(item));
 	}
 
 	closeModal() {
@@ -59,6 +83,7 @@ class ThreeLittlePigsGame extends Component {
 			return item;
 		})
 		this.setState({cards: newCards})
+		this.sendWebSocket({text: text, type: type});
 	}
 	render() {
 		return (
