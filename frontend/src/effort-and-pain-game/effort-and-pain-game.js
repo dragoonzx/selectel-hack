@@ -31,8 +31,8 @@ class EffortAndPainGame extends React.Component {
 				console.log("UPDATE PINS");
 				data.value.map((item) => {
 					console.log(item);
-					item.x = item.x/window.innerWidth;
-					item.y = item.y/window.innerHeight;
+					item.x = item.x*window.innerWidth;
+					item.y = item.y*window.innerHeight;
 					console.log(item);
 					return item;
 				}).map(pin => this.updatePin(pin));
