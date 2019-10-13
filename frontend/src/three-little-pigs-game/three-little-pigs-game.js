@@ -34,11 +34,10 @@ class ThreeLittlePigsGame extends Component {
 			console.log(data);
 			if (data.type === "data" && data.value !== "empty") {
 				console.log("UPDATE PINS");
-				this.setState({cards:data.value});
+				this.setState({ cards: data.value });
 			}
 		};
 	}
-
 
 	onCreateCardModal() {
 		this.setState({ isModalOpen: true });
@@ -55,7 +54,10 @@ class ThreeLittlePigsGame extends Component {
 		});
 		console.log(newState);
 		this.state.cards = newState;
-		this.sendWebSocket({text: this.state.cardText, type: this.state.cardType});
+		this.sendWebSocket({
+			text: this.state.cardText,
+			type: this.state.cardType
+		});
 		this.state.cardText = "";
 		this.state.cardType = 1;
 		this.state.isModalOpen = false;
@@ -63,7 +65,7 @@ class ThreeLittlePigsGame extends Component {
 		this.forceUpdate();
 	}
 
-	sendWebSocket(item){
+	sendWebSocket(item) {
 		this.websocket.send(JSON.stringify(item));
 	}
 
@@ -75,15 +77,15 @@ class ThreeLittlePigsGame extends Component {
 		this.setState({ cardType: event });
 	}
 
-	updateInfoPanel(text, type){
-		let newCards = this.state.cards.map((item)=>{
-			if (item.text === text){
+	updateInfoPanel(text, type) {
+		let newCards = this.state.cards.map(item => {
+			if (item.text === text) {
 				item.type = type;
 			}
 			return item;
-		})
-		this.setState({cards: newCards})
-		this.sendWebSocket({text: text, type: type});
+		});
+		this.setState({ cards: newCards });
+		this.sendWebSocket({ text: text, type: type });
 	}
 	render() {
 		return (
@@ -108,28 +110,69 @@ class ThreeLittlePigsGame extends Component {
 						Foster a conversation about improvements for getting our structures
 						more solid.
 					</div>
-					<div onClick={this.onCreateCardModal} className="add-button">
+					<div
+						onClick={this.onCreateCardModal}
+						style={{ zIndex: "9999" }}
+						className="add-button"
+					>
 						+
 					</div>
-					<div onClick={() => console.log("next game")} className="next-button">
+					<div
+						onClick={() => this.props.onEndGame("final")}
+						className="next-button"
+						style={{ zIndex: "9999" }}
+					>
 						NEXT GAME
 					</div>
 					<div className="house house-straw inline">
-						{(this.state.cards.filter((item)=> item.type === 1)).map((item,index)=>{
-							return <InfoPanel key={index} callback={this.updateInfoPanel} column={item.type} text={item.text}/>}
-						)}
+						{this.state.cards
+							.filter(item => item.type === 1)
+							.map((item, index) => {
+								return (
+									<InfoPanel
+										key={index}
+										callback={this.updateInfoPanel}
+										column={item.type}
+										text={item.text}
+									/>
+								);
+							})}
 					</div>
-					<div style={{left: 'calc(33vw + 15px)'}} className="vertical-divider inline"></div>
+					<div
+						style={{ left: "calc(33vw + 15px)" }}
+						className="vertical-divider inline"
+					></div>
 					<div className="house house-hut inline">
-						{(this.state.cards.filter((item)=> item.type === 2)).map((item, index)=>{
-							return <InfoPanel key={index} callback={this.updateInfoPanel} column={item.type} text={item.text}/>}
-						)}
+						{this.state.cards
+							.filter(item => item.type === 2)
+							.map((item, index) => {
+								return (
+									<InfoPanel
+										key={index}
+										callback={this.updateInfoPanel}
+										column={item.type}
+										text={item.text}
+									/>
+								);
+							})}
 					</div>
-					<div style={{left: 'calc(66vw + 17px)'}} className="vertical-divider inline"></div>
+					<div
+						style={{ left: "calc(66vw + 17px)" }}
+						className="vertical-divider inline"
+					></div>
 					<div className="house house-stone inline">
-						{(this.state.cards.filter((item)=> item.type === 3)).map((item, index)=>{
-							return <InfoPanel key={index} callback={this.updateInfoPanel} column={item.type} text={item.text}/>}
-						)}
+						{this.state.cards
+							.filter(item => item.type === 3)
+							.map((item, index) => {
+								return (
+									<InfoPanel
+										key={index}
+										callback={this.updateInfoPanel}
+										column={item.type}
+										text={item.text}
+									/>
+								);
+							})}
 					</div>
 				</div>
 			</>

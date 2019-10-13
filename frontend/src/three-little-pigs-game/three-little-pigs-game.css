@@ -7,7 +7,6 @@
 	width: calc(27vw - 2px);
 	background: #34345d;
 	height: 80vh;
-	overflow: scroll;
 }
 
 .tlp-game {

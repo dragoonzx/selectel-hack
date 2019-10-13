@@ -11,8 +11,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			appStatus: "final" //'start', 'OW', 'EAP', 'TLP', 'final'
-
+			appStatus: "EAP" //'start', 'OW', 'EAP', 'TLP', 'final'
 		};
 	}
 	handleGameChange = nextGame => {
@@ -34,9 +33,7 @@ class App extends Component {
 				{this.state.appStatus === "TLP" && (
 					<ThreeLittlePigsGame onEndGame={this.handleGameChange} />
 				)}
-				{this.state.appStatus === "final" && (
-					<FinalPage/>
-				)}
+				{this.state.appStatus === "final" && <FinalPage />}
 			</>
 		);
 	}
