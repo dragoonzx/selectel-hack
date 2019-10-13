@@ -138,7 +138,7 @@ function Header(props) {
 					</>
 				)}
 			</ModalWindow>
-			<h1 className="header__logo">
+			<h1 onClick={()=> props.callback('start')} className="header__logo">
 				RETRO<span style={{ color: "#AAABCE" }}>CTIVITIES</span>
 			</h1>
 			<div className="right__rectangle">
