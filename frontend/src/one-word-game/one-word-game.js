@@ -33,6 +33,11 @@ export default function OneWordGame(props) {
 		setText(e.target.value);
 	};
 
+	const endGame = e => {
+		props.onEndGame("EAP");
+		websocket.close();
+	};
+
 	const [isModalOpen, toggleModal] = React.useState(true);
 	const openModal = () => {
 		toggleModal(true);
@@ -41,12 +46,13 @@ export default function OneWordGame(props) {
 		websocket.send(JSON.stringify({ data: text }));
 		toggleModal(false);
 	};
+
 	return (
 		<div style={{ display: "flex" }}>
 			<div className="ep-game">
 				<div className="game-header">One Word</div>
 				<div className="game-descr">One Word</div>
-				<div onClick={() => props.onEndGame("EAP")} className="next-button">
+				<div onClick={endGame} className="next-button">
 					NEXT GAME
 				</div>
 				<ModalWindow isOpen={isModalOpen} onClose={closeModal}>

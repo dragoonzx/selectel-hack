@@ -13,6 +13,7 @@ class EffortAndPainGame extends React.Component {
 		this.addUserPin = this.addUserPin.bind(this);
 		this.saveUserPins = this.saveUserPins.bind(this);
 		this.updatePinsLocation = this.updatePinsLocation.bind(this);
+		this.endGame = this.endGame.bind(this);
 	}
 
 	componentDidMount() {
@@ -40,6 +41,11 @@ class EffortAndPainGame extends React.Component {
 			}
 		};
 	}
+
+	endGame = e => {
+		this.props.onEndGame("TLP");
+		this.websocket.close();
+	};
 
 	updatePin(element) {
 		let itemId = this.state.pins.find(item => item.text == element.text);
@@ -94,7 +100,7 @@ class EffortAndPainGame extends React.Component {
 				<div className="game-header">Effort and Pain</div>
 				<div className="game-descr">Effort and Pain</div>
 				<div
-					onClick={() => this.props.onEndGame("TLP")}
+					onClick={this.endGame}
 					className="next-button"
 				>
 					NEXT GAME

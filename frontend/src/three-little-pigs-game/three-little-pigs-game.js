@@ -20,6 +20,7 @@ class ThreeLittlePigsGame extends Component {
 		this.handleChooseType = this.handleChooseType.bind(this);
 		this.updateInfoPanel = this.updateInfoPanel.bind(this);
 		this.sendWebSocket = this.sendWebSocket.bind(this);
+		this.endGame = this.endGame.bind(this);
 
 		this.websocket = new WebSocket("ws://46.182.24.183:3003/");
 		this.websocket.onopen = () => {
@@ -38,6 +39,11 @@ class ThreeLittlePigsGame extends Component {
 			}
 		};
 	}
+
+	endGame = e => {
+		this.props.onEndGame("final");
+		this.websocket.close();
+	};
 
 	onCreateCardModal() {
 		this.setState({ isModalOpen: true });
@@ -118,7 +124,7 @@ class ThreeLittlePigsGame extends Component {
 						+
 					</div>
 					<div
-						onClick={() => this.props.onEndGame("final")}
+						onClick={this.endGame}
 						className="next-button"
 						style={{ zIndex: "9999" }}
 					>
