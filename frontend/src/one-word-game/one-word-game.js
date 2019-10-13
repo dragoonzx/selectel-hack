@@ -3,7 +3,7 @@ import "./one-word-game.css";
 import ModalWindow from "../components/ModalWindow";
 import Sticker from "./sticker";
 
-export default function OneWordGame() {
+export default function OneWordGame(props) {
 	const [stickers, setStickers] = React.useState([]);
 	const [websocket, setWebsocket] = React.useState(
 		new WebSocket("ws://46.182.24.183:3002/")
@@ -45,7 +45,7 @@ export default function OneWordGame() {
 			<div className="ep-game">
 				<div className="game-header">One Word</div>
 				<div className="game-descr">One Word</div>
-				<div onClick={() => console.log("next game")} className="next-button">
+				<div onClick={() => props.onEndGame("EAP")} className="next-button">
 					NEXT GAME
 				</div>
 				<ModalWindow isOpen={isModalOpen} onClose={closeModal}>
