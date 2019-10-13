@@ -81,7 +81,10 @@ class EffortAndPainGame extends React.Component {
 			<div className="ep-game">
 				<div className="game-header">Effort and Pain</div>
 				<div className="game-descr">Effort and Pain</div>
-				<div onClick={() => console.log("next game")} className="next-button">
+				<div
+					onClick={() => this.props.onEndGame("TLP")}
+					className="next-button"
+				>
 					NEXT GAME
 				</div>
 				<div style={{ display: "flex" }}>

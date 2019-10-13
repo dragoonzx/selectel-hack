@@ -12,18 +12,31 @@ class App extends Component {
 		super(props);
 		this.state = {
 			appStatus: "final" //'start', 'OW', 'EAP', 'TLP', 'final'
+
 		};
 	}
-
+	handleGameChange = nextGame => {
+		this.setState({
+			appStatus: nextGame
+		});
+	};
 	render() {
 		return (
 			<>
 				<Header></Header>
 				{this.state.appStatus === "start" && <StartScreen></StartScreen>}
-				{this.state.appStatus === "OW" && <OneWordGame />}
-				{this.state.appStatus === "EAP" && <EffortAndPainGame />}
-				{this.state.appStatus === "TLP" && <ThreeLittlePigsGame />}
-				{this.state.appStatus === "final" && <FinalPage/>}
+				{this.state.appStatus === "OW" && (
+					<OneWordGame onEndGame={this.handleGameChange} />
+				)}
+				{this.state.appStatus === "EAP" && (
+					<EffortAndPainGame onEndGame={this.handleGameChange} />
+				)}
+				{this.state.appStatus === "TLP" && (
+					<ThreeLittlePigsGame onEndGame={this.handleGameChange} />
+				)}
+				{this.state.appStatus === "final" && (
+					<FinalPage/>
+				)}
 			</>
 		);
 	}
