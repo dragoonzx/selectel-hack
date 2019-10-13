@@ -22,7 +22,7 @@ class App extends Component {
 	render() {
 		return (
 			<>
-				<Header></Header>
+				<Header status={this.state.appStatus}></Header>
 				{this.state.appStatus === "start" && (
 					<StartScreen onEndGame={this.handleGameChange}></StartScreen>
 				)}
