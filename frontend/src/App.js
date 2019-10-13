@@ -11,7 +11,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			appStatus: "EAP" //'start', 'OW', 'EAP', 'TLP', 'final'
+			appStatus: "OW" //'start', 'OW', 'EAP', 'TLP', 'final'
 		};
 	}
 	handleGameChange = nextGame => {
