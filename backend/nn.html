@@ -1,0 +1,21 @@
+<html>
+    <body>
+
+        <script>
+            var text = httpGet("http://46.182.24.183:8000/user");
+
+            obj = JSON.parse(text);
+
+            alert(obj.ISteamClient.online);
+
+            function httpGet(theUrl)
+            {
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+                xmlHttp.send();
+                return xmlHttp.responseText;
+            }
+        </script>
+
+    </body>
+</html>
