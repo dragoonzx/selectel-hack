@@ -18,6 +18,7 @@ class CreatePinComponent extends React.Component {
 
     savePins(){
         this.props.handlerSave();
+        this.setState({usePinText: ''});
     }
 
     createPins(){
@@ -31,7 +32,7 @@ class CreatePinComponent extends React.Component {
                 <div className="ep-create-pin__header-1">
                     1. Write your <span style={{color:'rgb(255, 240, 58'}}>opinion</span>:
                 </div>
-                <textarea onChange={this.handleChangeText} className="pin-text-input"/>
+                <textarea onChange={this.handleChangeText} value={this.state.userPinText} className="pin-text-input"/>
                 <div className="ep-create-pin__header-1">
                     2. Create <span style={{color: 'rgb(255, 27, 124)'}}>pin</span>:
                 </div>
