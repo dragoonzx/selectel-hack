@@ -11,7 +11,7 @@ import psycopg2
 from psycopg2 import sql
 from slackclient import SlackClient
 
-TOKEN = 'xoxb-778749144738-795422339110-s4SgPQzwDezdXfZcKx9zolwZ'
+TOKEN = 'xoxb-778749144738-795422339110-DDOmxZk0sfEGNkbzrlecY636'
 
 # instantiate Slack client
 slack_client = SlackClient(TOKEN)
@@ -24,7 +24,7 @@ EXAMPLE_COMMAND = "help"
 MENTION_REGEX = "^<@(|[WU].+?)>(.*)"
 HELP_RESPONSE = "Hi, this is Report Bot. That's what I can do: \n \
     help -- this bouqelet \n \
-    refresh_db -- insert new users into database"
+    start_event -- insert new users into database"
 
 
 def parse_bot_commands(slack_events):
@@ -65,6 +65,7 @@ def handle_command(command, channel):
    
     elif command.startswith('start_event'):
        
+        alphabet = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         #Connect to database
         conn = psycopg2.connect(dbname='retrospective_db', user='retro_user', password='2427980baba', host='127.0.0.1', port='5432')
         
@@ -91,7 +92,7 @@ def handle_command(command, channel):
            
             users_difference_dataframe = user_dataframe.loc[user_dataframe['id'].isin(records_difference)]
             #Make (almost)random passwords for new members 
-            alphabet = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            
             users_difference_dataframe['passwords'] = pd.Series(["".join(random.sample(alphabet, 10)) for i in range(users_difference_dataframe.shape[0])])
 
             #Here we want to get only those rows which are in the difference
@@ -113,7 +114,7 @@ def handle_command(command, channel):
                 user_id = requests.post('https://slack.com/api/im.open', data={'token': TOKEN, 'user': user}).json()
                 #If the request succeeded
                 if user_id['ok'] == True:
-                    #Get id of a user 
+                    #Get id of the user 
                     user_id = user_id['channel']['id']
                     user_info = (users_difference_dataframe[users_difference_dataframe['id'] == user]['id'].iloc[0],
                              users_difference_dataframe[users_difference_dataframe['id'] == user]['passwords'].iloc[0])
@@ -127,16 +128,34 @@ def handle_command(command, channel):
                 else:
                     continue
             
-            cursor.execute("INSERT INTO retros_session VALUES ('{val}', ' ', ' ', ' ', ' ')".format(val=auth_code))
+            user_ids_internal = list(user_ids_internal)
+            user_ids_internal = '&'.join(user_ids_internal)
+            cursor.execute("INSERT INTO retros_session VALUES ('{ids}', '{players}', ' ', ' ', ' ')".format(ids=auth_code, players=user_ids_internal))
             conn.commit()
             cursor.close()
             conn.close()
         else:
-            alphabet = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            user_ids_internal = list(user_ids_internal)
+            user_ids_internal = '&'.join(user_ids_internal)
+            auth_code = "".join(random.sample(alphabet, 10))
             response  = 'Session started! No new members. Authentication code is: {code}'.format(code="".join(random.sample(alphabet, 10)))
+            cursor.execute("INSERT INTO retros_session VALUES ('{ids}', '{players}', ' ', ' ', ' ')".format(ids=auth_code, players=user_ids_internal))
+            conn.commit()
             cursor.close()
             conn.close()
+    elif command.startswith('results'):
+        conn = psycopg2.connect(dbname='retrospective_db', user='retro_user', password='2427980baba', host='127.0.0.1', port='5432')
         
+        #Fetch user id's from it 
+        cursor = conn.cursor()
+        cursor.execute("SELECT oneword, aff_pain, pigs FROM retros_session;")
+        data = cursor.fetchall()[-1]
+        slack_client.api_call('chat.postMessage', 
+                    channel=channel,
+                    text=" \n".join(data[1].split('&') + data[2].split('&'))
+                    )        
+        cursor.close()
+        conn.close()
         
 
        
@@ -167,5 +186,4 @@ if __name__ == "__main__":
             time.sleep(RTM_READ_DELAY)
     else:
         print("Connection failed. Exception traceback printed above.")
-
 
