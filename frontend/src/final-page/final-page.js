@@ -9,7 +9,7 @@ class FinalPage extends Component {
         };
     }
 
-    async componentWillMount() {
+    async componentDidMount() {
         let result = await fetch(`http://46.182.24.183:8000/sessions/abc`, {method:'GET',
             header:
                 'Access-Control-Allow-Origin: *'});
@@ -28,14 +28,14 @@ class FinalPage extends Component {
                 <div className="final-panel first-fp">
                     <div className="plus-icon"></div>
                     <div className="results-panel">
-                        {this.state.info !== null ? this.state.info.aff_pain.split('&').map((item) => `${item}, `) : ''
+                        {this.state.info !== null ? this.state.info.pigs.split('&').map((item,key) => <li key={key}>{item}</li>)  : ''
                         }
                     </div>
                 </div>
                 <div className="final-panel second-fp">
                     <div className="minus-icon"></div>
                     <div className="results-panel">
-                        {this.state.info !== null ? this.state.info.pigs.split('&').map((item) => `${item}\n`)  : ''
+                        {this.state.info !== null ? this.state.info.aff_pain.split('&').map((item,key) => <li key={key}>{item}</li>) : ''
                         }
                     </div>
                 </div>

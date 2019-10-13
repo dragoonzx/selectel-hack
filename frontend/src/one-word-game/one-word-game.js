@@ -59,7 +59,7 @@ export default function OneWordGame(props) {
 				<ModalWindow isOpen={isModalOpen} onClose={closeModal}>
 					<div className="post--it">
 						<div className="ep-create-pin__header">
-							1. Please describe the last sprint in{" "}
+							1. Please describe the Selectel Hackaton in{" "}
 							<span style={{ color: "rgb(255, 240, 58" }}>one word:</span>
 							<div style={{ display: "flex", alignItems: "center" }}>
 								<textarea
