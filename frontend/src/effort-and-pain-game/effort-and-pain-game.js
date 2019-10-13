@@ -43,7 +43,11 @@ class EffortAndPainGame extends React.Component {
 		} else {
 			newStatePins[newStatePins.indexOf(itemId)] = element;
 		}
-		this.updatePinsState(Array.from(newStatePins));
+		this.updatePinsState(Array.from(newStatePins.map((item) => {
+			item.x = item.x/window.innerWidth;
+			item.y = item.y/window.innerHeight;
+			return item;
+		})));
 		console.log(this.state.pins);
 	}
 
@@ -66,7 +70,11 @@ class EffortAndPainGame extends React.Component {
 	saveUserPins() {
 		console.log("SEND SOCKET");
 		console.log(this.state.pins);
-		this.websocket.send(JSON.stringify({ data: this.state.pins }));
+		this.websocket.send(JSON.stringify({ data: this.state.pins.map((item)=>{
+				item.x = item.x*window.innerWidth;
+				item.y = item.y*window.innerHeight;
+				return item;
+			}) }));
 	}
 
 	updatePinsLocation(location) {
