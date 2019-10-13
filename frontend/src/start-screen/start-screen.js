@@ -7,10 +7,13 @@ class StartScreen extends Component {
 		super(props);
 		this.state = {
 			isActive: false,
-			joinFlag: false
+			joinFlag: false,
+			input: '',
 		};
 		this.mouseLeave = this.mouseLeave.bind(this);
 		this.mouseEnter = this.mouseEnter.bind(this);
+		this.join = this.join.bind(this);
+		this.changeInput = this.changeInput.bind(this);
 	}
 
 	mouseEnter() {
@@ -25,6 +28,19 @@ class StartScreen extends Component {
 			joinFlag: true
 		});
 	};
+
+	async join(){
+		let result = await fetch(`http://46.182.24.183:8000/session/${this.state.input}`, {method:'GET',
+			header:
+				'Access-Control-Allow-Origin: *'});
+		if (await result) {
+			this.props.onEndGame('OW');
+		}
+	}
+
+	changeInput(event){
+		this.setState({input: event.target.value});
+	}
 	render() {
 		return (
 			<div className="start-screen">
@@ -50,8 +66,8 @@ class StartScreen extends Component {
 						</div>
 					) : (
 						<div style={{ display: "flex", justifyContent: "center" }}>
-							<input autoFocus className="event-panel__input"></input>
-							<button className="event-panel__button--join">JOIN</button>
+							<input autoFocus onChange={this.changeInput} className="event-panel__input"></input>
+							<button onClick={this.join} className="event-panel__button--join">JOIN</button>
 						</div>
 					)}
 				</div>

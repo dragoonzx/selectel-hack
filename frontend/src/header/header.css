@@ -161,3 +161,17 @@
 	font-size: 13px;
 	cursor: pointer;
 }
+
+.right_text{
+	position: absolute;
+	background-color: transparent;
+	width: 80px;
+	height: 32px;
+	float: right;
+	outline: none;
+	right: 20px;
+	margin: 25px;
+	box-sizing: border-box;
+	color: white;
+	border-radius: 20px;
+}
