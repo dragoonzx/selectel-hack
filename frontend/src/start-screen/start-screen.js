@@ -8,7 +8,7 @@ class StartScreen extends Component {
 		this.state = {
 			isActive: false,
 			joinFlag: false,
-			input: '',
+			input: ""
 		};
 		this.mouseLeave = this.mouseLeave.bind(this);
 		this.mouseEnter = this.mouseEnter.bind(this);
@@ -28,19 +28,26 @@ class StartScreen extends Component {
 			joinFlag: true
 		});
 	};
-
-	async join(){
-		let result = await fetch(`http://46.182.24.183:8000/session/${this.state.input}`, {method:'GET',
-			header:
-				'Access-Control-Allow-Origin: *'});
+	handleCloseSession = () => {
+		if (this.state.joinFlag === true) {
+			this.setState({
+				joinFlag: false
+			});
+		}
+	};
+	async join() {
+		let result = await fetch(
+			`http://46.182.24.183:8000/session/${this.state.input}`,
+			{ method: "GET", header: "Access-Control-Allow-Origin: *" }
+		);
 		if (await result) {
-			this.props.onEndGame('OW');
+			this.props.onEndGame("OW");
 		}
 		this.props.callbackInput(this.state.input);
 	}
 
-	changeInput(event){
-		this.setState({input: event.target.value});
+	changeInput(event) {
+		this.setState({ input: event.target.value });
 	}
 	render() {
 		return (
@@ -67,8 +74,30 @@ class StartScreen extends Component {
 						</div>
 					) : (
 						<div style={{ display: "flex", justifyContent: "center" }}>
-							<input autoFocus onChange={this.changeInput} className="event-panel__input"></input>
-							<button onClick={this.join} className="event-panel__button--join">JOIN</button>
+							<div
+								style={{
+									zIndex: 9998,
+									position: "fixed",
+									width: "100%",
+									height: "100%",
+									top: 0,
+									left: 0
+								}}
+								onClick={() => this.handleCloseSession()}
+							></div>
+							<input
+								autoFocus
+								onChange={this.changeInput}
+								className="event-panel__input"
+								style={{ zIndex: 9999 }}
+							></input>
+							<button
+								onClick={this.join}
+								style={{ zIndex: 9999 }}
+								className="event-panel__button--join"
+							>
+								JOIN
+							</button>
 						</div>
 					)}
 				</div>
