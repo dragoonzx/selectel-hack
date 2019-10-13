@@ -42,6 +42,15 @@ class SessionKey(APIView):
             return Response(True)    
         else:
             return Response(False)
+
+class SessionALl(APIView):    
+
+    def get(self, request, pk, format=None):
+        sess = Session.objects.all()
+        serializer = SessionSerializer(sess, many = True)
+        return Response(serializer.data[-1])
+
+
  
         
 

@@ -2,6 +2,8 @@ import asyncio
 import json
 import logging
 import websockets
+import psycopg2
+from psycopg2 import sql
 
 logging.basicConfig()
 
@@ -61,6 +63,20 @@ async def counter(websocket, path):
                 logging.error("Massage is empty")
     finally:
         await unregister(websocket)
+        if len(USERS) == 0:
+            conn = psycopg2.connect(dbname='retrospective_db', user='retro_user', password='2427980baba', host='127.0.0.1', port='5432')
+            cursor = conn.cursor()
+            cursor.execute("SELECT s.id FROM retros_session s")
+            x = cursor.fetchall()[-1][0]
+            newState=[]
+            for state in STATES:
+                    newState.append(state["text"])
+            newState = '&'.join(newState)
+            query = "UPDATE retros_session SET pigs = '{newState}' WHERE id = '{x}'".format(newState = newState, x = x)
+            cursor.execute(query)
+            conn.commit()
+            cursor.close()
+            conn.close()
 
 
 start_server = websockets.serve(counter, "0.0.0.0", 3003)
