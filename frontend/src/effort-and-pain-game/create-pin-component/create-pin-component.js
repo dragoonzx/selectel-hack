@@ -29,7 +29,7 @@ class CreatePinComponent extends React.Component {
         return (
             <div className="ep-create-pin">
                 <div className="ep-create-pin__header-1">
-                    1. Write your <span style={{color:'rgb(255, 240, 58'}}>relation</span>:
+                    1. Write your <span style={{color:'rgb(255, 240, 58'}}>opinion</span>:
                 </div>
                 <textarea onChange={this.handleChangeText} className="pin-text-input"/>
                 <div className="ep-create-pin__header-1">
