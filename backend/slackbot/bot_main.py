@@ -11,7 +11,8 @@ import psycopg2
 from psycopg2 import sql
 from slackclient import SlackClient
 
-TOKEN = 'xoxb-778749144738-795422339110-71IBnHNHnXgGt6j21j2ruBFh'
+TOKEN = 'xoxb-778749144738-795422339110-s4SgPQzwDezdXfZcKx9zolwZ'
+
 # instantiate Slack client
 slack_client = SlackClient(TOKEN)
 # starterbot's user ID in Slack: value is assigned after the bot starts up
@@ -62,7 +63,7 @@ def handle_command(command, channel):
     if command.startswith(EXAMPLE_COMMAND):
         response = HELP_RESPONSE
    
-    elif command.startswith('refresh_db'):
+    elif command.startswith('start_event'):
        
         #Connect to database
         conn = psycopg2.connect(dbname='retrospective_db', user='retro_user', password='2427980baba', host='127.0.0.1', port='5432')
@@ -126,11 +127,12 @@ def handle_command(command, channel):
                 else:
                     continue
             
-            #cursor.execute('INSERT INTO retros_session (id) VALUES ({val})'.format(val=auth_code))
-            #conn.commit()
+            cursor.execute("INSERT INTO retros_session VALUES ('{val}', ' ', ' ', ' ', ' ')".format(val=auth_code))
+            conn.commit()
             cursor.close()
             conn.close()
         else:
+            alphabet = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
             response  = 'Session started! No new members. Authentication code is: {code}'.format(code="".join(random.sample(alphabet, 10)))
             cursor.close()
             conn.close()
